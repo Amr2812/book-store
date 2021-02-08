@@ -1,24 +1,53 @@
-const express = require('express')
+const express = require("express");
+const cookieParser = require("cookie-parser");
+const mongoose = require("mongoose");
+const session = require("express-session");
+const passport = require("passport");
+
+require("./config/passport")(passport);
+
+// DB Config
+const { MongoURI } = require("./config/keys");
+mongoose
+  .connect(MongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .catch((err) => console.log(err));
 
 // Create express instance
-const app = express()
+const app = express();
 
 // Require API routes
-const users = require('./routes/users')
-const test = require('./routes/test')
+const adminsRouter = require("./routes/admins");
 
 // Import API Routes
-app.use(users)
-app.use(test)
+app.use("/admins", adminsRouter);
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+
+// express-session
+app.use(
+  session({
+    secret: process.env.SECRET,
+    resave: true,
+    saveUninitialized: true,
+    cookie: {
+      secure: process.env.NODE_ENV ? "production" : "development",
+      httpOnly: true,
+    },
+  })
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Export express app
-module.exports = app
+module.exports = app;
 
 // Start standalone server if directly running
 if (require.main === module) {
-  const port = process.env.PORT || 3001
+  const port = process.env.PORT || 3001;
   app.listen(port, () => {
-    // eslint-disable-next-line no-console
-    console.log(`API server listening on port ${port}`)
-  })
+    console.log(`API server listening on port ${port}`);
+  });
 }

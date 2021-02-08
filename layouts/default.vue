@@ -1,63 +1,91 @@
 <template>
-  <div>
-    <Nuxt />
-  </div>
+  <v-app>
+    <v-navigation-drawer
+      v-model="drawer"
+      :clipped="true"
+      fixed
+      app
+      dark
+      disable-resize-watcher
+      color="primary"
+    >
+      <v-list>
+        <v-list-item v-for="(link, i) in links" :key="i" :to="link.to" router>
+          <v-list-item-action>
+            <v-icon>{{ link.icon }}</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title v-text="link.title" />
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
+    <v-app-bar :clipped-left="true" fixed app color="primary" dark dense>
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+      <v-toolbar-title v-text="title" />
+      <v-spacer />
+    </v-app-bar>
+    <v-main>
+      <v-container>
+        <nuxt />
+      </v-container>
+    </v-main>
+    <v-footer :padless="true" dark>
+      <v-card flat tile width="100%" class="text-center" color="primary">
+        <v-card-text>
+          <v-btn
+            v-for="icon in icons"
+            :key="icon"
+            class="mx-4 white--text"
+            icon
+          >
+            <v-icon size="24px">
+              {{ icon }}
+            </v-icon>
+          </v-btn>
+        </v-card-text>
+
+        <v-divider></v-divider>
+
+        <v-card-text class="white--text">
+          &copy; {{ new Date().getFullYear() }} —
+          <strong class="logo" v-text="title"></strong>
+          <h3>
+            <a href="https://amr-elmohamady.netlify.app"
+              >Made by Amr Elmohamady</a
+            >
+          </h3>
+        </v-card-text>
+      </v-card>
+    </v-footer>
+  </v-app>
 </template>
 
-<style>
-html {
-  font-family:
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
-  font-size: 16px;
-  word-spacing: 1px;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-}
-
-.button--green {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #3b8070;
-  color: #3b8070;
-  text-decoration: none;
-  padding: 10px 30px;
-}
-
-.button--green:hover {
-  color: #fff;
-  background-color: #3b8070;
-}
-
-.button--grey {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #35495e;
-  color: #35495e;
-  text-decoration: none;
-  padding: 10px 30px;
-  margin-left: 15px;
-}
-
-.button--grey:hover {
-  color: #fff;
-  background-color: #35495e;
-}
-
-</style>
+<script>
+export default {
+  data() {
+    return {
+      drawer: false,
+      links: [
+        {
+          icon: "mdi-home",
+          title: "Welcome",
+          to: "/"
+        },
+        {
+          icon: "mdi-phone",
+          title: "Contact Us",
+          to: "/contact"
+        }
+      ],
+      icons: [
+        'mdi-facebook',
+        'mdi-twitter',
+        'mdi-linkedin',
+        'mdi-instagram',
+      ],
+      title: "Bookery"
+    };
+  }
+};
+</script>

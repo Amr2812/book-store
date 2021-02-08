@@ -1,91 +1,36 @@
 <template>
-  <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">
-        nuxt-express
+  <v-row justify="center" align="center" style="min-height: 60vh">
+    <v-col cols="12" md="6" class="text-center text-md-left">
+      <h1 class="primary--text display-1 mb-3 mt-6">
+        <strong class="logo">Bookery</strong> Store
       </h1>
-      <div>
-        {{ test }}
-        <div class="links">
-          <a
-            href="/users"
-            class="button--green"
-          >
-            Users List
-          </a>
-        </div>
-      </div>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-    </div>
-  </div>
+      <p>
+        Lorem ipsum dolor sit, amet, consectetur adipisicing elit. Eius
+        doloribus accusantium, distinctio rerum dolores officiis neque vitae
+        provident enim in veritatis porro sint.
+        <br />
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quod culpa
+        placeat impedit itaque vero natus!
+      </p>
+      <v-btn color="primary" class="mr-2" to="/books">Browse Library</v-btn>
+      <v-btn class="primary--text" outlined to="/contact">Contact Us</v-btn>
+    </v-col>
+    <v-col cols="12" md="6">
+      <v-img
+        src="/books.svg"
+        lazy-src="/books.svg"
+        class="d-block mx-auto"
+        style="max-width: 300px;"
+      >
+        <template v-slot:placeholder>
+          <v-row class="fill-height ma-0" align="center" justify="center">
+            <v-progress-circular
+              indeterminate
+              color="grey lighten-5"
+            ></v-progress-circular>
+          </v-row>
+        </template>
+      </v-img>
+    </v-col>
+  </v-row>
 </template>
-
-<script>
-export default {
-  async asyncData ({ $http }) {
-    const test = await $http.$get('/api/test')
-    return {
-      test
-    }
-  }
-}
-</script>
-
-<style scoped>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family:
-    'Quicksand',
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
-</style>

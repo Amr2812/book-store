@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.13.0",
+    "@nuxtjs/cloudinary": "^1.0.3-beta-3",
     "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
     "cookie-parser": "~1.4.4",
     "ejs": "~2.6.1",
     "express": "~4.16.1",
@@ -18,7 +20,8 @@
     "mongoose": "^5.11.15",
     "nuxt": "latest",
     "passport": "^0.4.1",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "vue-wysiwyg": "^1.7.2"
   },
   "devDependencies": {
     "@nuxtjs/dotenv": "^1.4.1",

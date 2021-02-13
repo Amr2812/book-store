@@ -9,39 +9,49 @@ export default {
       {
         hid: "description",
         name: "description",
-        content: process.env.npm_package_description || "",
-      },
+        content: process.env.npm_package_description || ""
+      }
     ],
-    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
+    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }]
   },
 
   css: [],
 
-  plugins: [],
+  loading: {
+    height: "3px"
+  },
+
+  plugins: ["~/plugins/vue-wysiwyg.js", "~/plugins/notifier.js"],
 
   components: true,
 
   buildModules: ["@nuxtjs/dotenv", "@nuxtjs/vuetify"],
 
-  modules: ["@nuxtjs/axios"],
+  modules: ["@nuxtjs/axios", "@nuxtjs/cloudinary"],
 
   vuetify: {
     theme: {
       themes: {
         light: {
           primary: "#35495e",
-          secondary: "#526488",
-        },
-      },
-    },
+          secondary: "#526488"
+        }
+      }
+    }
+  },
+
+  cloudinary: {
+    cloudName: process.env.CLOUD_NAME,
+    apiKey: process.env.API_KEY,
+    apiSecret: process.env.API_SECRET
   },
 
   router: {
-    middleware: ["ssr-cookie"],
+    middleware: ["ssr-cookie"]
   },
 
   serverMiddleware: {
-    "/api": "~/api",
+    "/api": "~/api"
   },
 
   /*
@@ -56,5 +66,5 @@ export default {
    ** Build configuration
    ** See https://nuxtjs.org/api/configuration-build/
    */
-  build: {},
+  build: {}
 };

@@ -6,8 +6,6 @@
       fixed
       app
       dark
-      temporary
-      disable-resize-watcher
       color="primary"
     >
       <v-list>
@@ -23,7 +21,7 @@
     </v-navigation-drawer>
     <v-app-bar :clipped-left="true" fixed app color="primary" dark dense>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-toolbar-title v-text="title" />
+      <v-toolbar-title />
       <v-spacer />
     </v-app-bar>
     <v-main>
@@ -31,34 +29,6 @@
         <nuxt />
       </v-container>
     </v-main>
-    <v-footer :padless="true" dark>
-      <v-card flat tile width="100%" class="text-center" color="primary">
-        <v-card-text>
-          <v-btn
-            v-for="icon in icons"
-            :key="icon"
-            class="mx-4 white--text"
-            icon
-          >
-            <v-icon size="24px">
-              {{ icon }}
-            </v-icon>
-          </v-btn>
-        </v-card-text>
-
-        <v-divider></v-divider>
-
-        <v-card-text class="white--text">
-          &copy; {{ new Date().getFullYear() }} —
-          <strong class="logo" v-text="title"></strong>
-          <h3>
-            <a href="https://amr-elmohamady.netlify.app" class="white--text"
-              >Made by Amr Elmohamady</a
-            >
-          </h3>
-        </v-card-text>
-      </v-card>
-    </v-footer>
     <Snackbar></Snackbar>
   </v-app>
 </template>
@@ -86,14 +56,7 @@ export default {
           title: "Contact Us",
           to: "/contact"
         }
-      ],
-      icons: [
-        'mdi-facebook',
-        'mdi-twitter',
-        'mdi-linkedin',
-        'mdi-instagram',
-      ],
-      title: "Bookery"
+      ]
     };
   },
   components: {

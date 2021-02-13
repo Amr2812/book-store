@@ -1,29 +1,29 @@
 const express = require("express");
 const cookieParser = require("cookie-parser");
+const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const session = require("express-session");
 const passport = require("passport");
 
+require("dotenv").config();
+
 require("./config/passport")(passport);
+
+// Create express instance
+const app = express();
 
 // DB Config
 const { MongoURI } = require("./config/keys");
 mongoose
   .connect(MongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .catch((err) => console.log(err));
-
-// Create express instance
-const app = express();
-
-// Require API routes
-const adminsRouter = require("./routes/admins");
-
-// Import API Routes
-app.use("/admins", adminsRouter);
+  .then(console.log("Connected to MongoDB"))
+  .catch(err => console.log(err));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // express-session
 app.use(
@@ -33,13 +33,21 @@ app.use(
     saveUninitialized: true,
     cookie: {
       secure: process.env.NODE_ENV ? "production" : "development",
-      httpOnly: true,
-    },
+      httpOnly: true
+    }
   })
 );
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+// Require API routes
+const adminsRouter = require("./routes/admins");
+const booksRouter = require("./routes/books");
+
+// Import API Routes
+app.use("/admins", adminsRouter);
+app.use("/books", booksRouter);
 
 // Export express app
 module.exports = app;

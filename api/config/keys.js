@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 let MongoURI;
 
 if (process.env.NODE_ENV === "development") {
@@ -7,5 +9,3 @@ if (process.env.NODE_ENV === "development") {
 }
 
 module.exports.MongoURI = MongoURI;
-
-module.exports.secret = process.env.SECRET;

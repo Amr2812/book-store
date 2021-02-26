@@ -9,7 +9,8 @@ module.exports.newBook = (req, res, next) => {
     pagesCount,
     price,
     category,
-    coverImage
+    coverImage,
+    public_id
   } = req.body;
 
   if (
@@ -19,7 +20,9 @@ module.exports.newBook = (req, res, next) => {
     shortDescription &&
     pagesCount &&
     price &&
-    category
+    category &&
+    coverImage &&
+    public_id
   ) {
     Book.create({
       title,
@@ -56,47 +59,8 @@ module.exports.deleteSingleBook = (req, res, next) => {
   Book.findByIdAndDelete(id, err => {
     if (err) {
       res.send(err);
-    } else {
-      res.send("Book has been Deleted Successfully");
-    }
+    } else res.send("Book has been Deleted Successfully!");
   });
 };
 
-module.exports.updateSingleBook = (req, res, next) => {
-  const id = req.params.id;
-  const book = req.body;
-
-  Book.findByIdAndUpdate(id, book, (err, doc) => {
-    if (err) {
-      res.status(404).send(err);
-    } else {
-      res.json(doc);
-    }
-  });
-};
-
-module.exports.searchBooks = async (req, res) => {
-  try {
-    const result = await Book.aggregate([
-      {
-        $search: {
-          text: {
-            query: req.query.q,
-            path: "title"
-          }
-        }
-      },
-      {
-        $project: {
-          _id: 1,
-          title: 1,
-          coverImage: 1,
-          shortDescription: 1
-        }
-      }
-    ]);
-    res.json(result);
-  } catch (err) {
-    res.status(500).send(err);
-  }
-};
+module.exports.updateSingleBook = (req, res, next) => {};

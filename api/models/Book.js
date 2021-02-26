@@ -31,8 +31,8 @@ const bookSchema = mongoose.Schema({
   },
   coverImage: {
     type: String,
-    required: true
-  }
+    required: false
+  },
 });
 
 const Book = mongoose.model("book", bookSchema);

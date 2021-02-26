@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const session = require("express-session");
 const passport = require("passport");
+const cloudinary = require("cloudinary").v2;
 
 require("dotenv").config();
 
@@ -16,8 +17,15 @@ const app = express();
 const { MongoURI } = require("./config/keys");
 mongoose
   .connect(MongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(console.log("Connected to MongoDB"))
+  .then(console.log("Connected to", MongoURI))
   .catch(err => console.log(err));
+
+// Cloudinary Config
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.API_KEY,
+  api_secret: process.env.API_SECRET
+});
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -44,10 +52,12 @@ app.use(passport.session());
 // Require API routes
 const adminsRouter = require("./routes/admins");
 const booksRouter = require("./routes/books");
+const searchRouter = require("./routes/search");
 
 // Import API Routes
 app.use("/admins", adminsRouter);
 app.use("/books", booksRouter);
+app.use("/search", searchRouter);
 
 // Export express app
 module.exports = app;

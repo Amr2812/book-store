@@ -9,7 +9,7 @@
       color="primary"
     >
       <v-list>
-        <v-list-item v-for="(link, i) in links" :key="i" :to="link.to" router>
+        <v-list-item v-for="(link, i) in links" :key="i" :to="link.to" router exact>
           <v-list-item-action>
             <v-icon>{{ link.icon }}</v-icon>
           </v-list-item-action>
@@ -42,20 +42,15 @@ export default {
       drawer: false,
       links: [
         {
-          icon: "mdi-home",
-          title: "Welcome",
-          to: "/"
+          icon: "mdi-library",
+          title: "Books",
+          to: "/admin/books"
         },
         {
-          icon: "mdi-information",
-          title: "About Us",
-          to: "/about"
+          icon: "mdi-plus",
+          title: "Add Book",
+          to: "/admin/books/add"
         },
-        {
-          icon: "mdi-phone",
-          title: "Contact Us",
-          to: "/contact"
-        }
       ]
     };
   },

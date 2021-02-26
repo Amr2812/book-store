@@ -1,13 +1,12 @@
 <template>
   <v-form
     class="mb-5 text-center mx-auto elevation-2 pa-5"
-    ref="addBook"
-    lazy-validation
+    ref="editBook"
     @submit.prevent="submit()"
   >
     <v-row justify="center" align="center" style="min-height: 60vh">
       <v-col cols="12">
-        <h1 class="primary--text">Add Book</h1>
+        <h1 class="primary--text">Edit Book</h1>
       </v-col>
       <v-col cols="12" md="6">
         <v-text-field
@@ -57,13 +56,11 @@
         ></v-textarea>
       </v-col>
       <v-col cols="12" md="6">
-        <client-only>
-          <wysiwyg
-            v-model="book.description"
-            placeholder="Description"
-            :rules="[v => !!v || 'Description is required']"
-          />
-        </client-only>
+        <wysiwyg
+          v-model="book.description"
+          placeholder="Description"
+          :rules="[v => !!v || 'Description is required']"
+        />
       </v-col>
       <v-col cols="12" md="6">
         <v-file-input
@@ -85,7 +82,9 @@
           class="mx-auto"
         ></v-img>
       </v-col>
-      <v-btn color="success" type="submit" block>Add Book</v-btn>
+      <v-btn color="success" type="submit" :loading="loading" block
+        >Edit Book</v-btn
+      >
     </v-row>
   </v-form>
 </template>
@@ -94,16 +93,7 @@
 export default {
   data() {
     return {
-      book: {
-        title: null,
-        author: null,
-        shortDescription: null,
-        description: null,
-        pagesCount: null,
-        price: null,
-        category: null,
-        coverImage: null,
-      },
+      book: {},
       categories: [
         "Novels",
         "Literature",
@@ -122,26 +112,42 @@ export default {
         "Other"
       ],
       selectedImage: null,
-      uploadingImage: false
+      uploadingImage: false,
+      deletingImage: false,
+      loading: false
     };
+  },
+  async fetch() {
+    try {
+      const book = await this.$axios.get(`/api/books/${this.$route.params.id}`);
+      this.book = book.data;
+      this.selectedImage = book.data.coverImage;
+    } catch (err) {
+      this.$notifier.showMessage({
+        content: err,
+        color: "error"
+      });
+    }
   },
   methods: {
     async submit() {
-      if (this.$refs.addBook.validate()) {
-        try {
-          const res = await this.$axios.put("/api/books", this.book);
-          this.$notifier.showMessage({
-            content: "Book has been added Successfully",
-            color: "success"
-          });
-          this.$refs.addBook.reset();
-          this.book.description = "";
-        } catch (err) {
-          this.$notifier.showMessage({
-            content: err,
-            color: "error"
-          });
-        }
+      this.loading = true;
+      try {
+        const res = await this.$axios.patch(
+          `/api/books/${this.$route.params.id}`,
+          this.book
+        );
+        this.$notifier.showMessage({
+          content: "Book has been updated Successfully",
+          color: "success"
+        });
+        this.loading = false;
+      } catch (err) {
+        this.$notifier.showMessage({
+          content: err,
+          color: "error"
+        });
+        this.loading = false;
       }
     },
     fileUpload(file) {
@@ -159,9 +165,6 @@ export default {
           this.uploadingImage = false;
         };
         reader.readAsDataURL(file);
-      } else {
-        this.selectedImage = null;
-        this.book.coverImage = null;
       }
     }
   },

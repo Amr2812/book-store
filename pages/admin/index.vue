@@ -18,8 +18,8 @@
         <v-text-field
           v-model="login.password"
           :rules="[v => !!v || 'Password is required']"
-          name="Phone Number"
-          label="Phone Number"
+          name="Password"
+          label="Password"
           type="password"
           outlined
         ></v-text-field>

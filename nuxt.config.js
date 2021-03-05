@@ -2,7 +2,7 @@ export default {
   target: "server",
 
   head: {
-    title: process.env.npm_package_name || "",
+    title: "Book Store" || process.env.npm_package_name,
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
@@ -21,9 +21,11 @@ export default {
     height: "3px"
   },
 
-  plugins: ["~/plugins/vue-wysiwyg.js", "~/plugins/notifier.js"],
-
-  components: true,
+  plugins: [
+    "~/plugins/vue-wysiwyg",
+    "~/plugins/notifier",
+    { src: "~/plugins/vuex-persist", mode: "client" },
+  ],
 
   buildModules: ["@nuxtjs/dotenv", "@nuxtjs/vuetify"],
 
@@ -44,10 +46,6 @@ export default {
     cloudName: process.env.CLOUD_NAME,
     apiKey: process.env.API_KEY,
     apiSecret: process.env.API_SECRET
-  },
-
-  router: {
-    middleware: ["ssr-cookie"]
   },
 
   serverMiddleware: {

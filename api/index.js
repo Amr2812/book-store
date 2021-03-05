@@ -4,7 +4,6 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const session = require("express-session");
 const passport = require("passport");
-const cloudinary = require("cloudinary").v2;
 
 require("dotenv").config();
 
@@ -19,13 +18,6 @@ mongoose
   .connect(MongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(console.log("Connected to", MongoURI))
   .catch(err => console.log(err));
-
-// Cloudinary Config
-cloudinary.config({
-  cloud_name: process.env.CLOUD_NAME,
-  api_key: process.env.API_KEY,
-  api_secret: process.env.API_SECRET
-});
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

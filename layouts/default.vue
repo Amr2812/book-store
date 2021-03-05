@@ -77,6 +77,11 @@ export default {
           to: "/"
         },
         {
+          icon: "mdi-magnify",
+          title: "Search",
+          to: "/search"
+        },
+        {
           icon: "mdi-information",
           title: "About Us",
           to: "/about"

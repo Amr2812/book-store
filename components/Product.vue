@@ -2,7 +2,7 @@
   <v-card class="text-center elevation-0">
     <v-img
       :src="coverImage"
-      :lazy-src="coverImage"
+      lazy-src="/placeholder.png"
       style="max-width: 150px;max-height: 300px;"
       class="p-10 mx-auto"
     ></v-img>

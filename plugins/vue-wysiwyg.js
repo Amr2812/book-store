@@ -3,4 +3,4 @@ import wysiwyg from "vue-wysiwyg";
 
 import "vue-wysiwyg/dist/vueWysiwyg.css";
 
-Vue.use(wysiwyg);
+Vue.use(wysiwyg, { hideModules: { image: true } });

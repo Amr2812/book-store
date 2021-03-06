@@ -18,13 +18,14 @@ export default {
   css: [],
 
   loading: {
-    height: "3px"
+    height: "3px",
+    color: "#032A2A"
   },
 
   plugins: [
-    "~/plugins/vue-wysiwyg",
-    "~/plugins/notifier",
+    { src: "~/plugins/vue-wysiwyg", mode: "client" },
     { src: "~/plugins/vuex-persist", mode: "client" },
+    "~/plugins/notifier"
   ],
 
   buildModules: ["@nuxtjs/dotenv", "@nuxtjs/vuetify"],
@@ -35,8 +36,8 @@ export default {
     theme: {
       themes: {
         light: {
-          primary: "#35495e",
-          secondary: "#526488"
+          primary: "#108775",
+          secondary: "#00C58E"
         }
       }
     }

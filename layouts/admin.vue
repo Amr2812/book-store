@@ -21,7 +21,7 @@
     </v-navigation-drawer>
     <v-app-bar :clipped-left="true" fixed app color="primary" dark dense>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-toolbar-title v-text="Admin" />
+      <v-toolbar-title>Admin</v-toolbar-title>
       <v-spacer />
     </v-app-bar>
     <v-main>

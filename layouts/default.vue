@@ -98,7 +98,7 @@ export default {
         'mdi-linkedin',
         'mdi-instagram',
       ],
-      title: "Bookery"
+      title: "Azzbakeya Books"
     };
   },
   components: {

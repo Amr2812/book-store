@@ -8,7 +8,7 @@
         <p>{{ book.category }}</p>
         <v-img
           :src="book.coverImage"
-          :lazy-src="book.coverImage"
+          lazy-src="/placeholder.png"
           style="max-width: 300px;max-height: 600px;"
           class="p-10 mx-auto"
         ></v-img>

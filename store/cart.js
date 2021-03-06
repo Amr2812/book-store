@@ -16,17 +16,28 @@ export const getters = {
 };
 
 export const mutations = {
-  addToCart(state, item) {
-    let found = state.cart.find(product => product.id == item.id);
+  addToCart(state, payload) {
+    let found = state.cart.find(product => product.id == payload.id);
 
     if (found) {
       found.quantity++;
     } else {
-      state.cart.push(item);
+      state.cart.push(payload);
     }
   },
-  removeFromCart(state, item) {
-    let index = state.cart.indexOf(item);
+  removeFromCart(state, payload) {
+    let index = state.cart.indexOf(payload);
     state.cart.splice(index, 1);
   },
+  decreaseQuantity(state, payload) {
+    if (payload.quantity > 1) {
+      payload.quantity--;
+    } else {
+      let index = state.cart.indexOf(payload);
+      state.cart.splice(index, 1);
+    }
+  },
+  increaseQuantity(state, payload) {
+    payload.quantity++;
+  }
 };

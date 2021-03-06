@@ -25,6 +25,10 @@
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title v-text="title" />
       <v-spacer />
+      <v-btn icon style="position: relative;" @click="$router.push('/cart')">
+        <v-icon>mdi-cart</v-icon>
+        <span class="cart-number">{{ $store.state.cart.cart.length }}</span>
+      </v-btn>
     </v-app-bar>
     <v-main>
       <v-container>
@@ -82,6 +86,11 @@ export default {
           to: "/search"
         },
         {
+          icon: "mdi-cart",
+          title: "Cart",
+          to: "/cart"
+        },
+        {
           icon: "mdi-information",
           title: "About Us",
           to: "/about"
@@ -92,12 +101,7 @@ export default {
           to: "/contact"
         }
       ],
-      icons: [
-        'mdi-facebook',
-        'mdi-twitter',
-        'mdi-linkedin',
-        'mdi-instagram',
-      ],
+      icons: ["mdi-facebook", "mdi-twitter", "mdi-linkedin", "mdi-instagram"],
       title: "Azzbakeya Books"
     };
   },
@@ -106,3 +110,15 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.cart-number {
+  width: 21px;
+  position: absolute;
+  top: -8px;
+  right: 6px;
+  background-color: #FF6060;
+  padding: 2px;
+  border-radius: 50%;
+}
+</style>

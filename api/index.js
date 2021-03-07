@@ -45,11 +45,13 @@ app.use(passport.session());
 const adminsRouter = require("./routes/admins");
 const booksRouter = require("./routes/books");
 const searchRouter = require("./routes/search");
+const ordersRouter = require("./routes/orders");
 
 // Import API Routes
 app.use("/admins", adminsRouter);
 app.use("/books", booksRouter);
 app.use("/search", searchRouter);
+app.use("/orders", ordersRouter);
 
 // Export express app
 module.exports = app;

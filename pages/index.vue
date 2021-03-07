@@ -23,7 +23,7 @@
         sm="6"
         md="4"
         class="mx-auto"
-        v-for="book in books"
+        v-for="book in books.reverse()"
         :key="book._id"
       >
         <Product

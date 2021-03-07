@@ -129,7 +129,7 @@ export default {
     async submit() {
       if (this.$refs.addBook.validate()) {
         try {
-          const res = await this.$axios.put("/api/books", this.book);
+          const res = await this.$axios.post("/api/books", this.book);
           this.$notifier.showMessage({
             content: "Book has been added Successfully",
             color: "success"

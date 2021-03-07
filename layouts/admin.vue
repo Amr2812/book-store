@@ -51,6 +51,11 @@ export default {
           title: "Add Book",
           to: "/admin/books/add"
         },
+        {
+          icon: "mdi-cash",
+          title: "Orders",
+          to: "/admin/orders/"
+        },
       ]
     };
   },

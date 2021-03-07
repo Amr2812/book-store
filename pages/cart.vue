@@ -1,9 +1,6 @@
 <template>
   <v-row>
-    <v-col
-      v-for="book in $store.state.cart.cart"
-      :key="book.id"
-    >
+    <v-col v-for="book in $store.state.cart.cart" :key="book.id">
       <v-card class="text-center elevation-0">
         <v-img
           :src="book.coverImage"
@@ -38,6 +35,7 @@
         </v-card-actions>
       </v-card>
     </v-col>
+    <v-btn color="primary" to="/order" block class="my-5">Buy Now</v-btn>
     <v-toolbar color="error" dark v-if="$store.state.cart.cart < 1">
       No Books In Your Cart
       <v-spacer></v-spacer>
@@ -45,7 +43,3 @@
     </v-toolbar>
   </v-row>
 </template>
-
-<script>
-export default {};
-</script>

@@ -40,7 +40,7 @@ export default {
     },
     sliceTitle(text) {
       if (text.length > 24) {
-        return text.slice(0, 23) + "..";
+        return text.slice(0, 35) + "..";
       } else {
         return text;
       }

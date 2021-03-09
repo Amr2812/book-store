@@ -37,14 +37,61 @@
 import AddToCart from "~/components/AddToCart";
 
 export default {
-  data() {
-    return {
-      book: {}
-    };
+  async asyncData({ $axios, route }) {
+    const book = await $axios.$get(`/api/books/${route.params.id}`);
+    return { book };
   },
-  async fetch() {
-    const data = await this.$axios.$get(`/api/books/${this.$route.params.id}`);
-    this.book = data;
+  head() {
+    return {
+      title: this.book.title + " - Azbakeya Delivery",
+      meta: [
+        {
+          hid: "twitter:title",
+          name: "twitter:title",
+          content: this.book.title
+        },
+        {
+          hid: "twitter:description",
+          name: "twitter:description",
+          content: this.book.shortDescription
+        },
+        {
+          hid: "twitter:image",
+          name: "twitter:image",
+          content: this.book.coverImage
+        },
+        {
+          hid: "twitter:image:alt",
+          name: "twitter:image:alt",
+          content: this.book.title
+        },
+        {
+          hid: "og:title",
+          property: "og:title",
+          content: this.book.title
+        },
+        {
+          hid: "og:description",
+          property: "og:description",
+          content: this.book.shortDescription
+        },
+        {
+          hid: "og:image",
+          property: "og:image",
+          content: this.book.coverImage
+        },
+        {
+          hid: "og:image:secure_url",
+          property: "og:image:secure_url",
+          content: this.book.coverImage
+        },
+        {
+          hid: "og:image:alt",
+          property: "og:image:alt",
+          content: this.book.title
+        }
+      ]
+    };
   },
   components: { AddToCart }
 };

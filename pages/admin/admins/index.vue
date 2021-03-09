@@ -1,12 +1,12 @@
 <template>
   <v-row justify="center" align="center" class="mt-5">
     <v-col cols="12">
-      <h1 class="text-center primary--text">Books</h1>
+      <h1 class="text-center primary--text">Admins</h1>
     </v-col>
     <v-data-table
       :headers="headers"
-      :items="books"
-      item-key="title"
+      :items="admins"
+      item-key="name"
       class="elevation-1"
       :search="search"
       :custom-filter="filter"
@@ -19,11 +19,6 @@
         ></v-text-field>
       </template>
       <template v-slot:[`item.actions`]="{ item }">
-        <v-btn icon small class="mr-2" :to="'edit/' + item._id">
-          <v-icon small>
-            mdi-pencil
-          </v-icon>
-        </v-btn>
         <v-dialog
           transition="dialog-top-transition"
           max-width="600"
@@ -39,11 +34,11 @@
           <template v-slot:default="dialog">
             <v-card>
               <v-toolbar color="error" dark
-                >Are you sure you want to delete this book?</v-toolbar
+                >Are you sure you want to remove this Admin?</v-toolbar
               >
               <v-card-actions class="justify-end">
                 <v-btn text @click="dialog.value = false">Cancel</v-btn>
-                <v-btn color="primary" @click="deleteBook(item)">Delete</v-btn>
+                <v-btn color="primary" @click="deleteAdmin(item)">Delete</v-btn>
               </v-card-actions>
             </v-card>
           </template>
@@ -59,20 +54,17 @@ export default {
     return {
       search: "",
       headers: [
-        { text: "Title", value: "title" },
-        { text: "Author", value: "author" },
-        { text: "Price (L.E.)", value: "price", align: "center" },
-        { text: "Pages", value: "pagesCount", align: "center" },
-        { text: "Category", value: "category" },
+        { text: "Name", value: "name" },
+        { text: "Email", value: "email" },
         { text: "Actions", value: "actions", sortable: false, align: "center" }
       ],
-      books: [],
+      admins: [],
       dialog: false
     };
   },
   async fetch() {
-    const data = await this.$axios.$get("/api/books");
-    this.books = data;
+    const data = await this.$axios.$get("/api/admins");
+    this.admins = data;
   },
   methods: {
     filter(value, search, item) {
@@ -86,13 +78,13 @@ export default {
           .indexOf(search.toLowerCase()) !== -1
       );
     },
-    deleteBook(item) {
+    deleteAdmin(admin) {
       this.dialog = false;
       this.$axios
-        .delete(`/api/books/${item._id}`)
+        .$delete(`/api/admins/${admin._id}`)
         .then(res => {
           this.$notifier.showMessage({
-            content: res.data,
+            content: res,
             color: "success"
           });
           this.$fetch();

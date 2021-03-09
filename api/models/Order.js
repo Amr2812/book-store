@@ -10,7 +10,7 @@ const bookSchema = mongoose.Schema({
     required: true
   },
   quantity: {
-    type: String,
+    type: Number,
     required: true
   }
 });
@@ -25,7 +25,11 @@ const orderSchema = mongoose.Schema({
     required: true
   },
   phoneNumber: {
-    type: String,
+    type: Number,
+    required: true
+  },
+  totalPrice: {
+    type: Number,
     required: true
   },
   address: {

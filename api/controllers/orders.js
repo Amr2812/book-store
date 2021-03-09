@@ -1,13 +1,14 @@
 const Order = require("../models/Order");
 
 module.exports.newOrder = (req, res) => {
-  const { name, email, phoneNumber, address, books } = req.body;
+  const { name, email, phoneNumber, totalPrice, address, books } = req.body;
 
-  if (name && email && phoneNumber && address && books) {
+  if (name && email && phoneNumber && totalPrice && address && books) {
     Order.create({
       name,
       email,
       phoneNumber,
+      totalPrice,
       address,
       books
     })
@@ -28,6 +29,18 @@ module.exports.getOrders = (req, res) => {
     });
 };
 
-module.exports.getSingleOrder = (req, res) => {};
+module.exports.getSingleOrder = (req, res) => {
+  Order.findById(req.params.id)
+    .then(doc => res.json(doc))
+    .catch(err => res.send(err));
+};
 
-module.exports.deleteSingleOrder = (req, res) => {};
+module.exports.deleteSingleOrder = (req, res) => {
+  Order.findByIdAndDelete(req.params.id, err => {
+    if (err) {
+      res.send(err);
+    } else {
+      res.send("Order has been Deleted Successfully");
+    }
+  });
+};

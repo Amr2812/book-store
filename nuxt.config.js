@@ -2,14 +2,54 @@ export default {
   target: "server",
 
   head: {
-    title: "Book Store" || process.env.npm_package_name,
+    title: "Azbakeya Delivery" || process.env.npm_package_name,
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       {
-        hid: "description",
-        name: "description",
-        content: process.env.npm_package_description || ""
+        hid: "twitter:title",
+        name: "twitter:title",
+        content: "Azbakeya Delivery"
+      },
+      {
+        hid: "twitter:description",
+        name: "twitter:description",
+        content: "Azbakeya Delivery is an online book store that sells books online"
+      },
+      {
+        hid: "twitter:image",
+        name: "twitter:image",
+        content: "/meta-image.jpg"
+      },
+      {
+        hid: "twitter:image:alt",
+        name: "twitter:image:alt",
+        content: "Azbakeya Delivery"
+      },
+      {
+        hid: "og:title",
+        property: "og:title",
+        content: "Azbakeya Delivery"
+      },
+      {
+        hid: "og:description",
+        property: "og:description",
+        content: "Azbakeya Delivery is an online book store that sells books online"
+      },
+      {
+        hid: "og:image",
+        property: "og:image",
+        content: "/meta-image.jpg"
+      },
+      {
+        hid: "og:image:secure_url",
+        property: "og:image:secure_url",
+        content: "/meta-image.jpg"
+      },
+      {
+        hid: "og:image:alt",
+        property: "og:image:alt",
+        content: "Azbakeya Delivery"
       }
     ],
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }]

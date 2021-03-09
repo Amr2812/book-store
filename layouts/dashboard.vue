@@ -9,12 +9,26 @@
       color="primary"
     >
       <v-list>
-        <v-list-item v-for="(link, i) in links" :key="i" :to="link.to" router exact>
+        <v-list-item
+          v-for="(link, i) in links"
+          :key="i"
+          :to="link.to"
+          router
+          exact
+        >
           <v-list-item-action>
             <v-icon>{{ link.icon }}</v-icon>
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title v-text="link.title" />
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item @click="logout()">
+          <v-list-item-action>
+            <v-icon>mdi-logout</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title class="text-uppercase">logout</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -56,8 +70,29 @@ export default {
           title: "Orders",
           to: "/admin/orders/"
         },
+        {
+          icon: "mdi-shield-check",
+          title: "Admins",
+          to: "/admin/admins/"
+        },
+        {
+          icon: "mdi-plus",
+          title: "New Admin",
+          to: "/admin/admins/new"
+        }
       ]
     };
+  },
+  methods: {
+    async logout() {
+      try {
+        await this.$axios.$delete("/api/admins");
+        this.$store.commit("auth/isAuthenticated", false);
+        this.$router.push("/admin");
+      } catch (err) {
+        console.log(err);
+      }
+    }
   },
   components: {
     Snackbar

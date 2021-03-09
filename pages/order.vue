@@ -59,7 +59,8 @@ export default {
       order: {
         name: "",
         email: "",
-        phoneNumber: "",
+        phoneNumber: Number,
+        totalPrice: Number,
         address: "",
         books: []
       },
@@ -75,6 +76,7 @@ export default {
       };
       this.order.books.push(book);
     });
+    this.order.totalPrice = this.$store.getters['cart/totalPrice'];
   },
   methods: {
     async submitOrder() {

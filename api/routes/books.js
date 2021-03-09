@@ -1,17 +1,18 @@
 const express = require("express");
 const router = express.Router();
 
+const { isAuthenticated } = require("../middleware/admin");
 const booksController = require("../controllers/books");
 
 router
   .route("/")
-  .post(booksController.newBook)
+  .post(isAuthenticated, booksController.newBook)
   .get(booksController.getBooks);
 
 router
   .route("/:id")
   .get(booksController.getSingleBook)
-  .delete(booksController.deleteSingleBook)
-  .patch(booksController.updateSingleBook);
+  .delete(isAuthenticated, booksController.deleteSingleBook)
+  .patch(isAuthenticated, booksController.updateSingleBook);
 
 module.exports = router;

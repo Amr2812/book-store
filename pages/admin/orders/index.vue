@@ -61,6 +61,7 @@ export default {
       headers: [
         { text: "Name", value: "name" },
         { text: "Address", value: "address", align: "center" },
+        { text: "Total Price (L.E.)", value: "totalPrice", align: "center" },
         { text: "Actions", value: "actions", sortable: false, align: "center" }
       ],
       orders: [],
@@ -102,6 +103,7 @@ export default {
         });
     }
   },
-  layout: "admin"
+  layout: "dashboard",
+  middleware: "auth"
 };
 </script>

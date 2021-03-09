@@ -3,37 +3,38 @@
     <v-col style="max-width: 500px;">
       <v-form
         class="mb-5 text-center mx-auto elevation-2 pa-5"
-        ref="form"
+        ref="login"
         lazy-validation
         @submit.prevent="submit()"
       >
-        <h1 class="primary--text">Login</h1>
+        <h1 class="primary--text mb-2">Login</h1>
         <v-text-field
           label="Email"
           name="Email"
           v-model="login.email"
-          :rules="emailRules"
+          :rules="[
+            v => !!v || 'Email is required',
+            v => /.+@.+\..+/.test(v) || 'Email must be valid'
+          ]"
           outlined
         ></v-text-field>
         <v-text-field
           v-model="login.password"
-          :rules="[v => !!v || 'Password is required']"
-          name="Password"
           label="Password"
-          type="password"
+          hint="At least 6 characters"
+          :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
+          @click:append="showPass = !showPass"
+          :type="showPass ? 'text' : 'password'"
+          :rules="[
+            value => !!value || 'Password is Required.',
+            v => !!v && v.length >= 6 || 'Min 6 characters'
+          ]"
+          required
           outlined
         ></v-text-field>
-        <v-btn color="success" type="submit">Submit</v-btn>
+        <v-btn color="success" type="submit" :loading="loading">Submit</v-btn>
       </v-form>
     </v-col>
-    <v-snackbar top v-model="snackbar" class="white--text" :timeout="5000">
-      {{ snackbarMessage }}
-      <template v-slot:action="{ attrs }">
-        <v-btn text v-bind="attrs" @click="snackbar = false">
-          Close
-        </v-btn>
-      </template>
-    </v-snackbar>
   </v-row>
 </template>
 
@@ -45,17 +46,27 @@ export default {
         email: "",
         password: ""
       },
-      emailRules: [
-        v => !!v || "E-mail is required",
-        v => /.+@.+\..+/.test(v) || "E-mail must be valid"
-      ],
-      snackbar: false,
-      snackbarMessage: ""
+      errors: [],
+      showPass: false,
+      loading: false
     };
   },
   methods: {
-    submit() {
-      if (this.$refs.form.validate()) {
+    async submit() {
+      if (this.$refs.login.validate()) {
+        try {
+          this.loading = true;
+          await this.$axios.$post("/api/admins/login", this.login);
+          await this.$store.commit("auth/isAuthenticated", true);
+          await this.$router.push("/admin/books");
+          this.loading = false;
+        } catch (err) {
+          this.loading = false;
+          this.$notifier.showMessage({
+            content: "Incorrect Email or Password",
+            color: "error"
+          });
+        }
       }
     }
   }

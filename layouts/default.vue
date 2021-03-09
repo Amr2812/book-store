@@ -102,7 +102,7 @@ export default {
         }
       ],
       icons: ["mdi-facebook", "mdi-twitter", "mdi-linkedin", "mdi-instagram"],
-      title: "Azzbakeya Books"
+      title: "Azzbakeya Delivery"
     };
   },
   components: {

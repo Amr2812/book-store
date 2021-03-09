@@ -1,6 +1,5 @@
 const express = require("express");
 const cookieParser = require("cookie-parser");
-const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const session = require("express-session");
 const passport = require("passport");
@@ -22,17 +21,22 @@ mongoose
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+
+let secure;
+if (process.env.NODE_ENV === "production") {
+  secure = true;
+} else {
+  secure = false;
+}
 
 // express-session
 app.use(
   session({
     secret: process.env.SECRET,
-    resave: true,
     saveUninitialized: true,
+    resave: true,
     cookie: {
-      secure: process.env.NODE_ENV ? "production" : "development",
+      secure,
       httpOnly: true
     }
   })

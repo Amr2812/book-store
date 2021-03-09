@@ -95,11 +95,6 @@ export default {
           title: "About Us",
           to: "/about"
         },
-        {
-          icon: "mdi-phone",
-          title: "Contact Us",
-          to: "/contact"
-        }
       ],
       icons: ["mdi-facebook", "mdi-twitter", "mdi-linkedin", "mdi-instagram"],
       title: "Azzbakeya Delivery"

@@ -14,7 +14,8 @@ export default {
       {
         hid: "twitter:description",
         name: "twitter:description",
-        content: "Azbakeya Delivery is an online book store that sells books online"
+        content:
+          "Azbakeya Delivery is an online book store that sells books online"
       },
       {
         hid: "twitter:image",
@@ -34,7 +35,8 @@ export default {
       {
         hid: "og:description",
         property: "og:description",
-        content: "Azbakeya Delivery is an online book store that sells books online"
+        content:
+          "Azbakeya Delivery is an online book store that sells books online"
       },
       {
         hid: "og:image",
@@ -52,7 +54,29 @@ export default {
         content: "Azbakeya Delivery"
       }
     ],
-    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }]
+    link: [
+      {
+        rel: "apple-touch-icon",
+        sizes: "180x180",
+        href: "/apple-touch-icon.png"
+      },
+      {
+        rel: "icon",
+        type: "image/png",
+        sizes: "32x32",
+        href: "/favicon-32x32.png"
+      },
+      {
+        rel: "icon",
+        type: "image/png",
+        sizes: "16x16",
+        href: "/favicon-16x16.png"
+      },
+      {
+        rel: "manifest",
+        href: "site.webmanifest"
+      }
+    ]
   },
 
   css: [],
@@ -76,7 +100,7 @@ export default {
     theme: {
       themes: {
         light: {
-          primary: "#108775",
+          primary: "#DD2026",
           secondary: "#00C58E"
         }
       }

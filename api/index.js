@@ -48,12 +48,14 @@ app.use(passport.session());
 // Require API routes
 const adminsRouter = require("./routes/admins");
 const booksRouter = require("./routes/books");
+const relatedBooksRouter = require("./routes/relatedBooks");
 const searchRouter = require("./routes/search");
 const ordersRouter = require("./routes/orders");
 
 // Import API Routes
 app.use("/admins", adminsRouter);
 app.use("/books", booksRouter);
+app.use("/related", relatedBooksRouter);
 app.use("/search", searchRouter);
 app.use("/orders", ordersRouter);
 

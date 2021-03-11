@@ -16,6 +16,13 @@
       </v-col>
     </v-row>
     <v-row>
+      <v-progress-linear
+        v-if="searchQuery"
+        :indeterminate="true"
+        :query="true"
+        v-model="loading"
+        :active="true"
+      ></v-progress-linear>
       <v-col
         v-if="books.length > 0"
         :v-for="book in books"
@@ -49,8 +56,9 @@ import Product from "~/components/Product";
 export default {
   data() {
     return {
-      searchQuery: "",
-      books: []
+      searchQuery: null,
+      books: [],
+      loading: true
     };
   },
   watch: {
@@ -58,7 +66,10 @@ export default {
   },
   async fetch() {
     if (this.searchQuery) {
-      const data = await this.$axios.$get(`/api/search?q=${this.$route.query.q}`);
+      const data = await this.$axios.$get(
+        `/api/search?q=${this.$route.query.q}`
+      );
+      this.loading = false;
       this.books = data;
     }
   },

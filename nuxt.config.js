@@ -74,7 +74,7 @@ export default {
       },
       {
         rel: "manifest",
-        href: "site.webmanifest"
+        href: "/site.webmanifest"
       }
     ]
   },
@@ -89,7 +89,7 @@ export default {
   plugins: [
     { src: "~/plugins/vue-wysiwyg", mode: "client" },
     { src: "~/plugins/vuex-persist", mode: "client" },
-    "~/plugins/notifier"
+    "~/plugins/notifier",
   ],
 
   buildModules: ["@nuxtjs/dotenv", "@nuxtjs/vuetify"],

@@ -24,7 +24,20 @@
         sm="6"
         md="4"
         class="mx-auto"
-        v-for="book in books.reverse()"
+        v-for="number in 6"
+        :key="number"
+        v-show="loading"
+      >
+        <v-skeleton-loader
+          v-bind="attrs"
+          type="card-avatar, actions"
+        ></v-skeleton-loader>
+      </v-col>
+      <v-col
+        sm="6"
+        md="4"
+        class="mx-auto"
+        v-for="book in books"
         :key="book._id"
       >
         <Product
@@ -63,12 +76,19 @@ export default {
         "Philosiphy",
         "Other"
       ],
-      books: []
+      books: [],
+      attrs: {
+        class: "mb-6",
+        boilerplate: true,
+        elevation: 2
+      },
+      loading: true
     };
   },
   async fetch() {
-    const data = await this.$axios.$get("/api/books");
-    this.books = data;
+    const books = await this.$axios.$get("/api/books");
+    this.loading = false;
+    this.books = books;
   },
   components: { Product }
 };

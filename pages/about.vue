@@ -12,7 +12,7 @@
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quod culpa
         placeat impedit itaque vero natus!
       </p>
-      <v-btn color="primary" class="mr-2" to="/books">Browse Library</v-btn>
+      <v-btn color="primary" class="mr-2" to="/">Browse Library</v-btn>
       <v-btn
         class="primary--text"
         outlined

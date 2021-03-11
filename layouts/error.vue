@@ -7,7 +7,7 @@
       <h2 class="text-center">
         {{ error.message }}
       </h2>
-      <v-btn v-if="error.statusCode === 404" color="error" class="mt-2" to="/">
+      <v-btn v-if="error.statusCode === 404" color="error" class="mt-2 mx-auto" to="/">
         Homepage
       </v-btn>
     </div>

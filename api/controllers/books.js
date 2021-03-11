@@ -40,7 +40,7 @@ module.exports.newBook = (req, res, next) => {
 
 module.exports.getBooks = (req, res, next) => {
   Book.find({})
-    .then(books => res.json(books))
+    .then(books => res.json(books.reverse()))
     .catch(err => res.send(err));
 };
 

@@ -15,7 +15,7 @@
           ></v-img>
         </v-col>
         <v-col cols="12" sm="6" class="mt-sm-10">
-          <h3><span class="grey--text">By:</span> {{ book.author }}</h3>
+          <h3><i class="grey--text">By:</i> {{ book.author }}</h3>
           <h4>{{ book.price + " L.E." }}</h4>
           <v-card-text>
             <client-only>

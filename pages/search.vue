@@ -26,6 +26,7 @@
       <v-col
         v-if="books.length > 0"
         :v-for="book in books"
+        cols="12"
         sm="6"
         md="4"
         class="mx-auto"

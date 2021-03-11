@@ -16,7 +16,7 @@ const app = express();
 const { MongoURI } = require("./config/keys");
 mongoose
   .connect(MongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(console.log("Connected to", MongoURI))
+  .then(console.log("Connected to MongoDB"))
   .catch(err => console.log(err));
 
 app.use(express.json());

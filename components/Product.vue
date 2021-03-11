@@ -36,13 +36,15 @@ export default {
   props: ["coverImage", "title", "id", "price", "shortDescription"],
   filters: {
     sliceShortDescription(text) {
-      return text.slice(0, 150) + "...";
+      if (text) return text.slice(0, 150) + "...";
     },
     sliceTitle(text) {
-      if (text.length > 24) {
-        return text.slice(0, 35) + "..";
-      } else {
-        return text;
+      if (text) {
+        if (text.length > 24) {
+          return text.slice(0, 35) + "..";
+        } else {
+          return text;
+        }
       }
     }
   },

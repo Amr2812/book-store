@@ -89,7 +89,7 @@ export default {
   plugins: [
     { src: "~/plugins/vue-wysiwyg", mode: "client" },
     { src: "~/plugins/vuex-persist", mode: "client" },
-    "~/plugins/notifier",
+    "~/plugins/notifier"
   ],
 
   buildModules: ["@nuxtjs/dotenv", "@nuxtjs/vuetify"],
@@ -120,10 +120,10 @@ export default {
   /*
    ** For deployment you might want to edit host and port
    */
-  server: {
-   port: 8000, // default: 3000
-   host: '0.0.0.0' // default: localhost
-  },
+  // server: {
+  //  port: 8000, // default: 3000
+  //  host: '0.0.0.0' // default: localhost
+  // },
 
   /*
    ** Build configuration

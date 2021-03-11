@@ -27,7 +27,7 @@
           :type="showPass ? 'text' : 'password'"
           :rules="[
             value => !!value || 'Password is Required.',
-            v => !!v && v.length >= 6 || 'Min 6 characters'
+            v => (!!v && v.length >= 6) || 'Min 6 characters'
           ]"
           required
           outlined
@@ -46,10 +46,14 @@ export default {
         email: "",
         password: ""
       },
-      errors: [],
       showPass: false,
       loading: false
     };
+  },
+  mounted() {
+    if (this.$store.getters["auth/isAuthenticated"]) {
+      this.$router.push("/admin/books");
+    }
   },
   methods: {
     async submit() {
@@ -57,8 +61,8 @@ export default {
         try {
           this.loading = true;
           await this.$axios.$post("/api/admins/login", this.login);
-          await this.$store.commit("auth/isAuthenticated", true);
-          await this.$router.push("/admin/books");
+          this.$store.commit("auth/isAuthenticated", true);
+          this.$router.push("/admin/books");
           this.loading = false;
         } catch (err) {
           this.loading = false;

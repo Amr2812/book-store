@@ -5,7 +5,7 @@ export const state = () => ({
 export const mutations = {
   isAuthenticated(state, payload) {
     state.isAuthenticated = payload;
-  },
+  }
 };
 
 export const getters = {
@@ -19,5 +19,5 @@ export const actions = {
     if (req.isAuthenticated()) {
       commit("isAuthenticated", true);
     }
-  },
+  }
 };

@@ -2,6 +2,7 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
 const session = require("express-session");
+const MongoStore = require("connect-mongo").default;
 const passport = require("passport");
 
 require("dotenv").config();
@@ -33,8 +34,10 @@ if (process.env.NODE_ENV === "production") {
 app.use(
   session({
     secret: process.env.SECRET,
-    saveUninitialized: true,
+    saveUninitialized: false,
+    rolling: true,
     resave: true,
+    store: MongoStore.create({ mongoUrl: MongoURI }),
     cookie: {
       secure,
       httpOnly: true

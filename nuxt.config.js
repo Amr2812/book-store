@@ -100,6 +100,13 @@ export default {
     "@luxdamore/nuxt-prune-html"
   ],
 
+  axios: {
+    baseURL:
+      process.env.NODE_ENV === "production"
+        ? process.env.baseURL
+        : "http://localhost:3000"
+  },
+
   pruneHtml: {
     enabled: true, // `true` in production
     hideGenericMessagesInConsole: false, // `false` in production

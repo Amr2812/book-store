@@ -28,7 +28,6 @@
   "devDependencies": {
     "@mdi/font": "^5.9.55",
     "@nuxtjs/dotenv": "^1.4.1",
-    "@nuxtjs/vuetify": "^1.11.3",
-    "nuxt-purgecss": "^1.0.0"
+    "@nuxtjs/vuetify": "^1.11.3"
   }
 }

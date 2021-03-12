@@ -5,8 +5,6 @@
 
 > [ExpressJS](http://expressjs.com/) + [Nuxt.js](https://nuxtjs.org) = :zap:
 
-Live Demo: [https://codesandbox.io/s/github/nuxt-community/express-template](https://codesandbox.io/s/github/nuxt-community/express-template)
-
 ## Installation
 
 This is a template project, click on the green button "Use this template" at the top of this page and get started with GitHub :sparkles:

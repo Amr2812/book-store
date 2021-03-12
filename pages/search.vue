@@ -16,13 +16,13 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-progress-linear
+      <v-progress-circular
         v-if="searchQuery"
         :indeterminate="true"
         :query="true"
         v-model="loading"
-        :active="true"
-      ></v-progress-linear>
+        :active="loading"
+      ></v-progress-circular>
       <v-col
         v-if="books.length > 0"
         :v-for="book in books"

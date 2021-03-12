@@ -95,7 +95,6 @@ export default {
   buildModules: [
     "@nuxtjs/dotenv",
     ["@nuxtjs/vuetify", { iconfont: "@mdi" }],
-    "nuxt-purgecss"
   ],
 
   modules: [
@@ -103,7 +102,7 @@ export default {
     "@nuxtjs/cloudinary",
     "@luxdamore/nuxt-prune-html"
   ],
-  
+
   pruneHtml: {
     enabled: true, // `true` in production
     hideGenericMessagesInConsole: false, // `false` in production
@@ -167,24 +166,6 @@ export default {
     }
   },
 
-  purgeCSS: {
-    enabled: ({ isDev, isClient }) => !isDev && isClient, // or `false` when in dev/debug mode
-    paths: [
-      "components/**/*.vue",
-      "layouts/**/*.vue",
-      "pages/**/*.vue",
-      "plugins/**/*.js"
-    ],
-    styleExtensions: [".css"],
-    whitelist: ["body", "html", "nuxt-progress"],
-    extractors: [
-      {
-        extractor: content => content.match(/[A-z0-9-:\\/]+/g) || [],
-        extensions: ["html", "vue", "js"]
-      }
-    ]
-  },
-
   cloudinary: {
     cloudName: process.env.CLOUD_NAME,
     apiKey: process.env.API_KEY,
@@ -194,14 +175,6 @@ export default {
   serverMiddleware: {
     "/api": "~/api"
   },
-
-  /*
-   ** For deployment you might want to edit host and port
-   */
-  // server: {
-  //  port: 8000, // default: 3000
-  //  host: '0.0.0.0' // default: localhost
-  // },
 
   /*
    ** Build configuration

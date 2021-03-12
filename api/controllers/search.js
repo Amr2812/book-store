@@ -1,3 +1,5 @@
+import Book from "../models/Book";
+
 module.exports.searchBooks = async (req, res) => {
   try {
     const result = await Book.aggregate([

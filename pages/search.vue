@@ -16,29 +16,30 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-progress-circular
-        v-if="searchQuery"
-        :indeterminate="true"
-        :query="true"
-        v-model="loading"
-        :active="loading"
-      ></v-progress-circular>
-      <v-col
-        v-if="books.length > 0"
-        :v-for="book in books"
-        cols="12"
-        sm="6"
-        md="4"
-        class="mx-auto"
-      >
-        <Product
-          :title="book.title"
-          :coverImage="book.coverImage"
-          :price="book.price"
-          :shortDescription="book.shortDescription"
-          :id="book._id"
-        />
+      <v-col cols="12" class="text-center" v-if="loading">
+        <v-progress-circular
+          :indeterminate="true"
+          color="secondary"
+        ></v-progress-circular>
       </v-col>
+      <div v-if="books">
+        <v-col
+          v-for="book in books"
+          :key="book._id"
+          cols="12"
+          sm="6"
+          md="4"
+          class="mx-auto"
+        >
+          <Product
+            :title="book.title"
+            :coverImage="book.coverImage"
+            :price="book.price"
+            :shortDescription="book.shortDescription"
+            :id="book._id"
+          />
+        </v-col>
+      </div>
       <v-col v-else>
         <v-img
           src="/search.svg"
@@ -58,21 +59,18 @@ export default {
   data() {
     return {
       searchQuery: null,
-      books: [],
-      loading: true
+      books: null,
+      loading: false
     };
   },
   watch: {
     "$route.query": "$fetch"
   },
   async fetch() {
-    if (this.searchQuery) {
-      const data = await this.$axios.$get(
-        `/api/search?q=${this.$route.query.q}`
-      );
-      this.loading = false;
-      this.books = data;
-    }
+    this.loading = true;
+    const data = await this.$axios.$get(`/api/search?q=${this.$route.query.q}`);
+    this.loading = false;
+    this.books = data;
   },
   components: { Product }
 };

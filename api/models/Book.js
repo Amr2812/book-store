@@ -3,7 +3,8 @@ const mongoose = require("mongoose");
 const bookSchema = mongoose.Schema({
   title: {
     type: String,
-    required: true
+    required: true,
+    text: true
   },
   author: {
     type: String,
@@ -32,7 +33,7 @@ const bookSchema = mongoose.Schema({
   coverImage: {
     type: String,
     required: false
-  },
+  }
 });
 
 const Book = mongoose.model("book", bookSchema);

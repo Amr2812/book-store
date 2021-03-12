@@ -92,10 +92,7 @@ export default {
     "~/plugins/notifier"
   ],
 
-  buildModules: [
-    "@nuxtjs/dotenv",
-    ["@nuxtjs/vuetify", { iconfont: "@mdi" }],
-  ],
+  buildModules: ["@nuxtjs/dotenv", ["@nuxtjs/vuetify", { iconfont: "@mdi" }]],
 
   modules: [
     "@nuxtjs/axios",
@@ -160,7 +157,7 @@ export default {
       themes: {
         light: {
           primary: "#DD2026",
-          secondary: "#00C58E"
+          secondary: "#6C63FF"
         }
       }
     }

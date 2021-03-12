@@ -22,25 +22,23 @@
           color="secondary"
         ></v-progress-circular>
       </v-col>
-      <div v-if="books">
-        <v-col
-          v-for="book in books"
-          :key="book._id"
-          cols="12"
-          sm="6"
-          md="4"
-          class="mx-auto"
-        >
-          <Product
-            :title="book.title"
-            :coverImage="book.coverImage"
-            :price="book.price"
-            :shortDescription="book.shortDescription"
-            :id="book._id"
-          />
-        </v-col>
-      </div>
-      <v-col v-else>
+      <v-col
+        v-for="book in books"
+        :key="book._id"
+        cols="12"
+        sm="6"
+        md="4"
+        class="mx-auto"
+      >
+        <Product
+          :title="book.title"
+          :coverImage="book.coverImage"
+          :price="book.price"
+          :shortDescription="book.shortDescription"
+          :id="book._id"
+        />
+      </v-col>
+      <v-col v-show="!books || books.length < 1">
         <v-img
           src="/search.svg"
           lazy-src="search.svg"
@@ -67,10 +65,17 @@ export default {
     "$route.query": "$fetch"
   },
   async fetch() {
-    this.loading = true;
-    const data = await this.$axios.$get(`/api/search?q=${this.$route.query.q}`);
-    this.loading = false;
-    this.books = data;
+    if (this.searchQuery) {
+      this.loading = true;
+      const data = await this.$axios.$get(
+        `/api/search?q=${this.$route.query.q}`
+      );
+      this.loading = false;
+      this.books = data;
+    }
+  },
+  mounted() {
+    this.searchQuery = this.$route.query.q;
   },
   components: { Product }
 };

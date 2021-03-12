@@ -1,21 +1,21 @@
 <template>
-  <v-card class="text-center elevation-0">
+  <v-card class="text-center elevation-0 mb-4">
     <v-img
       :src="coverImage"
       lazy-src="/placeholder.png"
       style="max-width: 150px;max-height: 300px;"
       class="p-10 mx-auto"
-    ></v-img>
+      ></v-img>
     <v-card-title class="primary--text d-block mx-auto">
       {{ title | sliceTitle }}
     </v-card-title>
-    <v-card-subtitle>
+    <v-card-subtitle class="pb-2">
       {{ price + " L.E." }}
     </v-card-subtitle>
-    <v-card-text>
+    <v-card-text class="pb-0">
       <p>{{ shortDescription | sliceShortDescription }}</p>
     </v-card-text>
-    <v-card-actions class="d-block mx-auto">
+    <v-card-actions class="d-block mx-auto pt-0">
       <AddToCart
         :block="false"
         :title="title"
@@ -51,3 +51,9 @@ export default {
   components: { AddToCart }
 };
 </script>
+
+<style>
+.v-card__text, .v-card__title {
+  word-break: normal !important;
+}
+</style>

@@ -2,7 +2,7 @@ import Book from "../models/Book";
 
 module.exports.get = (req, res) => {
   Book.find({ category: req.query.category })
-    .limit(3)
+    .limit(6)
     .select("coverImage title shortDescription price")
     .then(books => {
       books.splice(

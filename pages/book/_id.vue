@@ -35,7 +35,7 @@
       </v-row>
       <v-divider class="mt-3"></v-divider>
     </v-card>
-    <h1 class="mt-8 grey--text text-decoration-underline text-center">Related Books</h1>
+    <h1 class="mt-8 grey--text text-decoration-underline text-center" v-if="relatedBooks.length">Related Books</h1>
     <v-row class="mt-5" justify="center" align="center">
       <v-col
         sm="6"

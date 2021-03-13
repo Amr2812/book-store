@@ -19,35 +19,16 @@
         ></v-text-field>
       </template>
       <template v-slot:[`item.actions`]="{ item }">
-        <v-btn icon small class="mr-2" :to="`/admin/books/edit/${item._id}`">
+        <v-btn icon small :to="`/admin/books/edit/${item._id}`">
           <v-icon small>
             mdi-pencil
           </v-icon>
         </v-btn>
-        <v-dialog
-          transition="dialog-top-transition"
-          max-width="600"
-          v-model="dialog"
-        >
-          <template v-slot:activator="{ on, attrs }">
-            <v-btn icon small class="mr-2" v-bind="attrs" v-on="on">
-              <v-icon small>
-                mdi-delete
-              </v-icon>
-            </v-btn>
-          </template>
-          <template v-slot:default="dialog">
-            <v-card>
-              <v-toolbar color="error" dark
-                >Are you sure you want to delete {{ item.title }}?</v-toolbar
-              >
-              <v-card-actions class="justify-end">
-                <v-btn text @click="dialog.value = false">Cancel</v-btn>
-                <v-btn color="primary" @click="deleteBook(item._id)">Delete</v-btn>
-              </v-card-actions>
-            </v-card>
-          </template>
-        </v-dialog>
+        <v-btn icon small @click="deleteBook(item._id)">
+          <v-icon small>
+            mdi-delete
+          </v-icon>
+        </v-btn>
       </template>
     </v-data-table>
   </v-row>

@@ -12,6 +12,8 @@ require("./config/passport")(passport);
 // Create express instance
 const app = express();
 
+app.set("trust proxy", 1);
+
 // DB Config
 const { MongoURI } = require("./config/keys");
 mongoose
@@ -41,7 +43,7 @@ app.use(
     cookie: {
       secure,
       httpOnly: true,
-      maxAge: 1209600000 //2 weeks
+      maxAge: 1209600000 // 2 weeks
     }
   })
 );

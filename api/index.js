@@ -40,7 +40,8 @@ app.use(
     store: MongoStore.create({ mongoUrl: MongoURI }),
     cookie: {
       secure,
-      httpOnly: true
+      httpOnly: true,
+      maxAge: 1209600000 //2 weeks
     }
   })
 );

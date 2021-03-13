@@ -1,17 +1,24 @@
 <template>
-  <section class="container">
-    <div>
-      <h1 class="text-center error--text display-4">
-        {{ error.statusCode }}
-      </h1>
-      <h2 class="text-center">
-        {{ error.message }}
-      </h2>
-      <v-btn v-if="error.statusCode === 404" color="error" class="mt-2 mx-auto" to="/">
-        Homepage
-      </v-btn>
-    </div>
-  </section>
+  <v-container>
+    <v-row justify="center">
+      <v-col class="text-center">
+        <h1 class="text-center error--text display-4">
+          {{ error.statusCode }}
+        </h1>
+        <h2 class="text-center">
+          {{ error.message }}
+        </h2>
+        <v-btn
+          v-if="error.statusCode === 404"
+          color="error"
+          class="mt-2"
+          to="/"
+        >
+          Homepage
+        </v-btn>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -22,5 +29,5 @@ export default {
       default: () => ({})
     }
   }
-}
+};
 </script>

@@ -43,7 +43,7 @@
               >
               <v-card-actions class="justify-end">
                 <v-btn text @click="dialog.value = false">Cancel</v-btn>
-                <v-btn color="primary" @click="deleteBook(item)">Delete</v-btn>
+                <v-btn color="primary" @click="deleteBook(item._id)">Delete</v-btn>
               </v-card-actions>
             </v-card>
           </template>
@@ -86,20 +86,20 @@ export default {
           .indexOf(search.toLowerCase()) !== -1
       );
     },
-    deleteBook(item) {
+    deleteBook(id) {
       this.dialog = false;
       this.$axios
-        .delete(`/api/books/${item._id}`)
+        .$delete(`/api/books/${id}`)
         .then(res => {
           this.$notifier.showMessage({
-            content: res.data,
+            content: res,
             color: "success"
           });
           this.$fetch();
         })
         .catch(err => {
           this.$notifier.showMessage({
-            content: err.data,
+            content: err,
             color: "error"
           });
         });

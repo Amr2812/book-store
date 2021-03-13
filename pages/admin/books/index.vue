@@ -19,7 +19,7 @@
         ></v-text-field>
       </template>
       <template v-slot:[`item.actions`]="{ item }">
-        <v-btn icon small class="mr-2" :to="'edit/' + item._id">
+        <v-btn icon small class="mr-2" :to="'/admin/books/edit/' + item._id">
           <v-icon small>
             mdi-pencil
           </v-icon>

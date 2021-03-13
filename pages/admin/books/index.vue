@@ -39,7 +39,7 @@
           <template v-slot:default="dialog">
             <v-card>
               <v-toolbar color="error" dark
-                >Are you sure you want to delete this book?</v-toolbar
+                >Are you sure you want to delete {{ item.title }}?</v-toolbar
               >
               <v-card-actions class="justify-end">
                 <v-btn text @click="dialog.value = false">Cancel</v-btn>

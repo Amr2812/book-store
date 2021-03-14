@@ -19,7 +19,7 @@
         ></v-text-field>
       </template>
       <template v-slot:[`item.actions`]="{ item }">
-        <v-btn icon small class="mr-2" :to="'orders/' + item._id">
+        <v-btn icon small class="mr-2" :to="'/admin/orders/' + item._id">
           <v-icon small>
             mdi-open-in-new
           </v-icon>

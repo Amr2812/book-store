@@ -10,6 +10,7 @@
       class="elevation-1"
       :search="search"
       :custom-filter="filter"
+      :loading="loading"
     >
       <template v-slot:top>
         <v-text-field
@@ -48,11 +49,14 @@ export default {
         { text: "Actions", value: "actions", sortable: false, align: "center" }
       ],
       books: [],
-      dialog: false
+      dialog: false,
+      loading: true
     };
   },
   async fetch() {
+    this.loading = true;
     const data = await this.$axios.$get("/api/books");
+    this.loading = false;
     this.books = data;
   },
   methods: {

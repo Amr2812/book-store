@@ -83,7 +83,7 @@ export default {
       if (this.$refs.order.validate()) {
         try {
           this.loading = true;
-          await this.$axios.post("/api/orders", this.order);
+          await this.$axios.$post("/api/orders", this.order);
           this.loading = false;
           this.$notifier.showMessage({
             content: "Order Submitted! We'll contact you!",

@@ -5,9 +5,11 @@
       lazy-src="/placeholder.png"
       style="max-width: 150px;max-height: 300px;"
       class="p-10 mx-auto"
-      ></v-img>
+    ></v-img>
     <v-card-title class="primary--text d-block mx-auto">
-      {{ title | sliceTitle }}
+      <nuxt-link :to="`/book/${id}`" class="text-decoration-none">
+        {{ title | sliceTitle }}
+      </nuxt-link>
     </v-card-title>
     <v-card-subtitle class="pb-2">
       {{ price + " L.E." }}
@@ -23,7 +25,7 @@
         :price="price"
         :id="id"
       />
-      <v-btn text color="primary" :to="'/book/' + id">View more</v-btn>
+      <v-btn text color="primary" :to="`/book/${id}`">View more</v-btn>
     </v-card-actions>
   </v-card>
 </template>
@@ -53,7 +55,8 @@ export default {
 </script>
 
 <style>
-.v-card__text, .v-card__title {
+.v-card__text,
+.v-card__title {
   word-break: normal !important;
 }
 </style>

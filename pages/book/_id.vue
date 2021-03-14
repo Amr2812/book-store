@@ -36,7 +36,12 @@
       </v-row>
       <v-divider class="mt-3"></v-divider>
     </v-card>
-    <h1 class="mt-8 grey--text text-decoration-underline text-center" v-if="relatedBooks.length">Related Books</h1>
+    <h1
+      class="mt-8 grey--text text-decoration-underline text-center"
+      v-if="relatedBooks.length"
+    >
+      Related Books
+    </h1>
     <v-row class="mt-5" justify="center" align="center">
       <v-col
         sm="6"
@@ -64,8 +69,12 @@ import Product from "~/components/Product";
 export default {
   async asyncData({ $axios, route }) {
     const book = await $axios.$get(`/api/books/${route.params.id}`);
+    let category = book.category;
+    if (category.includes("&")) {
+      category = category.replace("&", "-");
+    }
     const relatedBooks = await $axios.$get(
-      `/api/related/${route.params.id}?category=${book.category}`
+      `/api/related/${route.params.id}?category=${category}`
     );
     return { book, relatedBooks };
   },

@@ -65,7 +65,7 @@ export default {
     "$route.query": "$fetch"
   },
   async fetch() {
-    if (this.searchQuery) {
+    if (this.$route.query.q) {
       this.loading = true;
       const data = await this.$axios.$get(
         `/api/search?q=${this.$route.query.q}`

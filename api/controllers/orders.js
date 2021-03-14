@@ -20,19 +20,23 @@ module.exports.newOrder = (req, res) => {
 };
 
 module.exports.getOrders = (req, res) => {
-  Order.find({})
-    .then(doc => {
+  Order.find({}, (err, doc) => {
+    if (err) {
+      res.send(err);
+    } else {
       res.json(doc);
-    })
-    .catch(err => {
-      res.status(500).send(err);
-    });
+    }
+  });
 };
 
 module.exports.getSingleOrder = (req, res) => {
-  Order.findById(req.params.id)
-    .then(doc => res.json(doc))
-    .catch(err => res.send(err));
+  Order.findById(req.params.id, (err, order) => {
+    if (err) {
+      res.send(err);
+    } else {
+      res.json(order);
+    }
+  });
 };
 
 module.exports.deleteSingleOrder = (req, res) => {

@@ -29,7 +29,7 @@ module.exports.newBook = (req, res, next) => {
       pagesCount,
       price,
       category,
-      coverImage,
+      coverImage
     })
       .then(() => res.send("Book Created"))
       .catch(err => res.send(err));
@@ -39,15 +39,23 @@ module.exports.newBook = (req, res, next) => {
 };
 
 module.exports.getBooks = (req, res, next) => {
-  Book.find({})
-    .then(books => res.json(books.reverse()))
-    .catch(err => res.send(err));
+  Book.find({}, (err, books) => {
+    if (err) {
+      res.send(err);
+    } else {
+      res.json(books.reverse());
+    }
+  });
 };
 
 module.exports.getSingleBook = (req, res, next) => {
-  Book.findById(req.params.id)
-    .then(books => res.json(books))
-    .catch(err => res.send(err));
+  Book.findById(req.params.id, (err, book) => {
+    if (err) {
+      res.send(err);
+    } else {
+      res.json(book);
+    }
+  });
 };
 
 module.exports.deleteSingleBook = (req, res, next) => {

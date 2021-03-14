@@ -3,13 +3,13 @@ const Admin = require("../models/Admin");
 const passport = require("passport");
 
 module.exports.getAdmins = (req, res) => {
-  Admin.find({})
-    .then(admins => {
+  Admin.find({}, (err, admins) => {
+    if (err) {
+      res.send(err);
+    } else {
       res.json(admins);
-    })
-    .catch(err => {
-      res.status(500).send(err);
-    });
+    }
+  });
 };
 
 module.exports.newAdmin = (req, res) => {
@@ -79,5 +79,5 @@ module.exports.login = (req, res, next) => {
 
 module.exports.logout = (req, res) => {
   req.logout();
-  res.send("Logged Out")
+  res.send("Logged Out");
 };

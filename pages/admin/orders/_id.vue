@@ -102,7 +102,7 @@ export default {
             content: res,
             color: "success"
           });
-          this.$fetch();
+          this.$router.replace("/admins/orders");
         })
         .catch(err => {
           this.$notifier.showMessage({

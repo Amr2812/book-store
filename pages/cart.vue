@@ -1,6 +1,6 @@
 <template>
   <v-row justify="center">
-    <v-col v-for="book in cart.cart" :key="book.id">
+    <v-col v-for="book in cart" :key="book.id">
       <v-card class="text-center elevation-0">
         <v-img
           :src="book.coverImage"
@@ -41,11 +41,11 @@
         to="/order"
         block
         class="my-5"
-        v-if="cart.cart.length > 0"
+        v-if="cart.length > 0"
         >Buy Now</v-btn
       >
     </v-col>
-    <v-toolbar color="error" dark v-if="cart.cart < 1">
+    <v-toolbar color="error" dark v-if="cart < 1">
       No Books In Your Cart
       <v-spacer></v-spacer>
       <v-btn text to="/">Browse Books</v-btn>
@@ -54,11 +54,16 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
-
 export default {
-  computed: {
-    ...mapState(["cart"])
+  data() {
+    return {
+      cart: []
+    };
+  },
+  mounted() {
+    setTimeout(() => {
+      this.cart = this.$store.state.cart.cart;
+    }, 100);
   }
-}
+};
 </script>

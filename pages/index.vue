@@ -84,7 +84,7 @@ export default {
         boilerplate: true,
         elevation: 2
       },
-      loading: true
+      loading: false
     };
   },
   async fetch() {

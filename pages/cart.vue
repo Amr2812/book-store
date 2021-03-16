@@ -1,5 +1,5 @@
 <template>
-  <v-row>
+  <v-row justify="center">
     <v-col v-for="book in $store.state.cart.cart" :key="book.id">
       <v-card class="text-center elevation-0">
         <v-img
@@ -35,7 +35,16 @@
         </v-card-actions>
       </v-card>
     </v-col>
-    <v-btn color="primary" to="/order" block class="my-5">Buy Now</v-btn>
+    <v-col cols="12">
+      <v-btn
+        color="primary"
+        to="/order"
+        block
+        class="my-5"
+        v-if="$store.state.cart.cart.length > 0"
+        >Buy Now</v-btn
+      >
+    </v-col>
     <v-toolbar color="error" dark v-if="$store.state.cart.cart < 1">
       No Books In Your Cart
       <v-spacer></v-spacer>

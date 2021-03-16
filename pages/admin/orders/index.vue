@@ -12,11 +12,21 @@
       :custom-filter="filter"
     >
       <template v-slot:top>
-        <v-text-field
-          v-model="search"
-          label="Search"
-          class="mx-4"
-        ></v-text-field>
+        <v-row align="center">
+          <v-col cols="8">
+          <v-text-field
+            v-model="search"
+            label="Search"
+            class="mx-4"
+          ></v-text-field>
+        </v-col>
+        <v-col cols="3">
+          <v-btn color="info" @click="$fetch()">
+            <v-icon>mdi-refresh</v-icon>
+            Refresh
+          </v-btn>
+        </v-col>
+        </v-row>
       </template>
       <template v-slot:[`item.actions`]="{ item }">
         <v-btn icon small class="mr-2" :to="'/admin/orders/' + item._id">

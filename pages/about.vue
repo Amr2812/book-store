@@ -2,7 +2,7 @@
   <v-row justify="center" align="center" style="min-height: 60vh">
     <v-col cols="12" md="6" class="text-center text-md-left">
       <h1 class="primary--text display-1 mb-3 mt-6">
-        <strong>Azbakeya Delivery</strong> Book Store
+        <strong>Book Store</strong>
       </h1>
       <p>
         Lorem ipsum dolor sit, amet, consectetur adipisicing elit. Eius
@@ -16,8 +16,6 @@
       <v-btn
         class="primary--text"
         outlined
-        href="https://www.facebook.com/azbakeya.delivery"
-        target="_blank"
         >Follow Us</v-btn
       >
     </v-col>

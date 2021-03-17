@@ -1,24 +1,12 @@
-<p align="center"><img width="328px" src="https://nuxtjs.org/logos/nuxt.svg"></p>
-
-
 # Nuxt.js with Express
 
-> [ExpressJS](http://expressjs.com/) + [Nuxt.js](https://nuxtjs.org) = :zap:
+> [ExpressJS](http://expressjs.com/) + [Nuxt.js](https://nuxtjs.org) = Book Store:
 
 ## Installation
 
-This is a template project, click on the green button "Use this template" at the top of this page and get started with GitHub :sparkles:
-
-One you cloned your repository, install the dependencies with:
-
 ```bash
-yarn install # or npm install
+npm install
 ```
-
-## ExpressJS Changes
-
-- There is a  `api` directory with the root of your `api` server.
-- The `routes` directory is called `api/routes`.
 
 ## Commands
 

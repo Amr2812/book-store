@@ -97,7 +97,7 @@ export default {
         },
       ],
       icons: ["mdi-facebook", "mdi-twitter", "mdi-linkedin", "mdi-instagram"],
-      title: "Azzbakeya Delivery"
+      title: "Book Store"
     };
   },
   components: {
@@ -112,7 +112,7 @@ export default {
   position: absolute;
   top: -8px;
   right: 6px;
-  background-color: #FF6060;
+  background-color: #5aada1;
   padding: 2px;
   border-radius: 50%;
 }

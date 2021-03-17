@@ -2,20 +2,20 @@ export default {
   target: "server",
 
   head: {
-    title: "Azbakeya Delivery" || process.env.npm_package_name,
+    title: "Book Store" || process.env.npm_package_name,
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       {
         hid: "twitter:title",
         name: "twitter:title",
-        content: "Azbakeya Delivery"
+        content: "Book Store"
       },
       {
         hid: "twitter:description",
         name: "twitter:description",
         content:
-          "Azbakeya Delivery is an online book store that sells books online"
+          "Book Store is an online book store that sells books online"
       },
       {
         hid: "twitter:image",
@@ -25,53 +25,21 @@ export default {
       {
         hid: "twitter:image:alt",
         name: "twitter:image:alt",
-        content: "Azbakeya Delivery"
+        content: "Book Store"
       },
       {
         hid: "og:title",
         property: "og:title",
-        content: "Azbakeya Delivery"
+        content: "Book Store"
       },
       {
         hid: "og:description",
         property: "og:description",
         content:
-          "Azbakeya Delivery is an online book store that sells books online"
+          "Book Store is an online book store that sells books online"
       },
-      {
-        hid: "og:image",
-        property: "og:image",
-        content: "/meta-image.jpg"
-      },
-      {
-        hid: "og:image:secure_url",
-        property: "og:image:secure_url",
-        content: "/meta-image.jpg"
-      },
-      {
-        hid: "og:image:alt",
-        property: "og:image:alt",
-        content: "Azbakeya Delivery"
-      }
     ],
     link: [
-      {
-        rel: "apple-touch-icon",
-        sizes: "180x180",
-        href: "/apple-touch-icon.png"
-      },
-      {
-        rel: "icon",
-        type: "image/png",
-        sizes: "32x32",
-        href: "/favicon-32x32.png"
-      },
-      {
-        rel: "icon",
-        type: "image/png",
-        sizes: "16x16",
-        href: "/favicon-16x16.png"
-      },
       {
         rel: "manifest",
         href: "/site.webmanifest"
@@ -163,7 +131,7 @@ export default {
     theme: {
       themes: {
         light: {
-          primary: "#DD2026",
+          primary: "#108775",
           secondary: "#6C63FF"
         }
       }

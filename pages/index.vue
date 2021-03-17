@@ -2,8 +2,7 @@
   <div>
     <v-row justify="center" align="center">
       <v-col class="text-center">
-        <img src="/logo.png" width="200px" height="100px" />
-        <h1 class="primary--text"><strong>Azbakeya Delivery</strong></h1>
+        <h1 class="primary--text"><strong>Book Store</strong></h1>
         <p class="mb-5">
           We are an International Book Store that Sells Millions of Books Every
           Year. We Sell all kinds of Books and all Categories.

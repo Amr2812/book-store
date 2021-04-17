@@ -14,8 +14,7 @@ export default {
       {
         hid: "twitter:description",
         name: "twitter:description",
-        content:
-          "Book Store is an online book store that sells books online"
+        content: "Book Store is an online book store that sells books online"
       },
       {
         hid: "twitter:image",
@@ -35,9 +34,8 @@ export default {
       {
         hid: "og:description",
         property: "og:description",
-        content:
-          "Book Store is an online book store that sells books online"
-      },
+        content: "Book Store is an online book store that sells books online"
+      }
     ],
     link: [
       {
@@ -59,6 +57,10 @@ export default {
     { src: "~/plugins/vuex-persist", mode: "client" },
     "~/plugins/notifier"
   ],
+
+  router: {
+    middleware: ["ssr-cookie"]
+  },
 
   buildModules: ["@nuxtjs/dotenv", ["@nuxtjs/vuetify", { iconfont: "@mdi" }]],
 

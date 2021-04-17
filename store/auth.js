@@ -13,11 +13,3 @@ export const getters = {
     return state.isAuthenticated;
   }
 };
-
-export const actions = {
-  nuxtServerInit({ commit }, { req }) {
-    if (req.isAuthenticated()) {
-      commit("isAuthenticated", true);
-    }
-  }
-};

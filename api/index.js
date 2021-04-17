@@ -17,7 +17,11 @@ app.set("trust proxy", 1);
 // DB Config
 const { MongoURI } = require("./config/keys");
 mongoose
-  .connect(MongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(MongoURI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true
+  })
   .then(console.log("Connected to MongoDB"))
   .catch(err => console.log(err));
 

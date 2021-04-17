@@ -13,14 +13,14 @@
     >
       <template v-slot:top>
         <v-row align="center">
-          <v-col cols="12" md="8">
+          <v-col cols="12" sm="8">
           <v-text-field
             v-model="search"
             label="Search"
             class="mx-4"
           ></v-text-field>
         </v-col>
-        <v-col cols="12" md="3">
+        <v-col cols="6" sm="3" class="mx-auto">
           <v-btn color="info" @click="$fetch()">
             <v-icon>mdi-refresh</v-icon>
             Refresh

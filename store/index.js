@@ -1,0 +1,7 @@
+export const actions = {
+  nuxtServerInit({ commit }, { req }) {
+    if (req.headers.cookie.includes("connect.sid=")) {
+      commit("auth/isAuthenticated", true);
+    }
+  }
+};

@@ -8,4 +8,4 @@ if (process.env.NODE_ENV === "development") {
   MongoURI = process.env.MongoURI;
 }
 
-module.exports.MongoURI = MongoURI;
+module.exports.MongoURI = process.env.MongoURI;

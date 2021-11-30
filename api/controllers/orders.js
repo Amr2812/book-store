@@ -20,31 +20,19 @@ module.exports.newOrder = (req, res) => {
 };
 
 module.exports.getOrders = (req, res) => {
-  Order.find({}, (err, doc) => {
-    if (err) {
-      res.send(err);
-    } else {
-      res.json(doc);
-    }
-  });
+  Order.find({})
+    .then(order => res.send(order))
+    .catch(err => res.status(404).send(err));;
 };
 
 module.exports.getSingleOrder = (req, res) => {
-  Order.findById(req.params.id, (err, order) => {
-    if (err) {
-      res.send(err);
-    } else {
-      res.json(order);
-    }
-  });
+  Order.findById(req.params.id)
+    .then(order => res.send(order))
+    .catch(err => res.status(404).send(err));
 };
 
 module.exports.deleteSingleOrder = (req, res) => {
-  Order.findByIdAndDelete(req.params.id, err => {
-    if (err) {
-      res.send(err);
-    } else {
-      res.send("Order has been Deleted Successfully");
-    }
-  });
+  Order.findByIdAndDelete(req.params.id)
+    .then(order => res.send("Order has been Deleted Successfully"))
+    .catch(err => res.status(404).send(err));
 };

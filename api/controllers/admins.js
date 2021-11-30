@@ -3,13 +3,9 @@ const Admin = require("../models/Admin");
 const passport = require("passport");
 
 module.exports.getAdmins = (req, res) => {
-  Admin.find({}, (err, admins) => {
-    if (err) {
-      res.send(err);
-    } else {
-      res.json(admins);
-    }
-  });
+  Admin.find({})
+    .then(admins => res.send(admins))
+    .catch(err => res.status(400).send(err));
 };
 
 module.exports.newAdmin = (req, res) => {
@@ -51,13 +47,9 @@ module.exports.newAdmin = (req, res) => {
 };
 
 module.exports.deleteAdmin = (req, res) => {
-  Admin.findByIdAndDelete(req.params.id, err => {
-    if (err) {
-      res.send(err);
-    } else {
-      res.send("Admin has been Deleted Successfully");
-    }
-  });
+  Admin.findByIdAndDelete(req.params.id)
+    .then(res.send("Admin has been Deleted Successfully"))
+    .catch(err => res.status(400).send(err));
 };
 
 module.exports.login = (req, res, next) => {

@@ -15,7 +15,7 @@ module.exports.get = (req, res) => {
         }),
         1
       );
-      res.json(books);
+      res.send(books);
     })
-    .catch(err => res.json(err));
+    .catch(err => res.status(500).send(err));
 };

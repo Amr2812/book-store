@@ -21,7 +21,7 @@ module.exports.searchBooks = async (req, res) => {
         }
       }
     ]);
-    res.json(books);
+    res.send(books);
   } catch (err) {
     res.status(500).send(err);
   }
